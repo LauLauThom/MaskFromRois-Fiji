@@ -14,6 +14,7 @@ The plugin should be executed after having annotated all ROIs in an image, or al
 #@ Boolean (label="Save mask(s)", value=false) save_mask
 #@ File    (label="Save mask(s) in directory", style="directory") outDir
 #@ String  (label="Filename suffix (optional)", value="") suffix
+#@ String  (label="Save masks as", choices={"tif", "tiff", "png", "jpg", "gif", "bmp"}, value="tif") extension
 #@ ImagePlus imp
 #@ RoiManager rm
 from ij.gui import Overlay
@@ -80,10 +81,10 @@ for sliceIndex in range(1, stackSize+1): # slice index ranges [1, stackSize] (he
 	
 	if save_mask :
 		filename = getImageName(imp) if stackSize==1 else getSliceName(imp, sliceIndex) 
-		filename = os.path.splitext(filename)[0] + suffix +".tiff" # use original filename followed by suffix + .tif
+		filename = os.path.splitext(filename)[0] + suffix +"." + extension # use original filename followed by suffix + .extension
 		
 		filepath = os.path.join(outDir, filename)
-		IJ.saveAsTiff(ImagePlus("mask", mask), filepath)
+		IJ.save(ImagePlus("mask", mask), filepath)
 	
 	
 # Finally show the stack of mask if asked for
