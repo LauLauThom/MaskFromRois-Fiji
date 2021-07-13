@@ -12,11 +12,18 @@ Overlapping ROIs will result in a single "white blob" in the mask.
 
 The plugin should be executed after having annotated all ROIs in an image, or all image-slices of a stack.  
 
-The resulting mask images can be displayed and saved to disk, in one of the proposed format and to a directory of choice.    
-Filenames for the mask should be identical to the original filename when available (read from the window title, or from the slice label).  
+## Mask images
+The resulting mask images (0/255 pixel values) can be displayed in ImageJ, and saved to a custom directory on disk, in one of the proposed format.    
+Filenames for the mask will be identical to the original filename when available (read from the fileinfo, slice label or window title).  
+
+## Filename suffix
 An optional suffix can be added to the filenames, for instance if you are saving the mask in the same directory than the images.  
 
 __Example__:  
 original.tiff  
 with suffix *-mask* and `png` extension  
 original-mask.png
+
+## Installation
+The plugin can be installed by activating the MasksFromRoi update site (soon).  
+The plugin is then available in the menu *Edit > Selection > Mask(s) from Roi(s)*.
