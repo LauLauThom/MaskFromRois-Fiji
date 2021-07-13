@@ -42,8 +42,8 @@ def getSliceName(imagePlus, sliceIndex):
 	
 	else: # empty slice label
 		
-		if imp.isHyperStack(): 
-			c,z,t = imp.convertIndexToPosition(sliceIndex)
+		if imagePlus.isHyperStack(): 
+			c,z,t = imagePlus.convertIndexToPosition(sliceIndex)
 			sliceName = "C:{},Z:{},T:{}".format(c,z,t)
 		
 		else: # 1D stack
