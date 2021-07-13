@@ -58,7 +58,7 @@ stackSize = imp.getStackSize()
 if show_mask:
 	stackOfMasks = ImageStack() # one mask-slice per image-slice
 
-imp.resetRoi() # remove any active ROI not in the ROI manager
+imp.deleteRoi() # remove any active ROI not in the ROI manager
 for sliceIndex in range(1, stackSize+1): # slice index ranges [1, stackSize] (hence +1 to have it included)
 
 	overlay = Overlay() # create a new Overlay for each image, to generate a new mask
