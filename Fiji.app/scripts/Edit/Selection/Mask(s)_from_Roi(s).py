@@ -12,7 +12,7 @@ The plugin should be executed after having annotated all ROIs in an image, or al
 """
 #@ Boolean (label="Show mask(s)", value=true) show_mask
 #@ Boolean (label="Save mask(s)", value=false) save_mask
-#@ File    (label="Save mask(s) in directory", style="directory") directory
+#@ File    (label="Save mask(s) in directory", style="directory") outDir
 #@ String  (label="Filename suffix (optional)", value="") suffix
 #@ ImagePlus imp
 #@ RoiManager rm
@@ -33,9 +33,26 @@ if rm.getCount() == 0:
 	IJ.error(msg)
 	raise Exception(msg)
 
-listRois  = rm.getRoisAsArray()	
+outDir = outDir.getPath()
+
+# Check that we are not overwriting the original images
+# This might happen if the output directory == image directory and no suffix is used
+# in practice overwriting the original images would require that they also have a tiff extension but we dont check it here 
+fileInfo = imp.getOriginalFileInfo()
+
+if save_mask and fileInfo : # sometimes fileInfo is null
+	
+	sameDir  = fileInfo.directory[:-1] == outDir # -1 to not take the last \
+	
+	if sameDir and len(suffix)==0: # ie saving the mask in the image directory with identical image names 
+		IJ.error("""Please select another output directory or add a filename suffix.
+					Current settings could otherwise result in having the mask images overwriting the images.
+					""")
+		raise Exception("Prevents overwritting the images when output directory = image directory and empty suffix.")
+
+
+listRois  = rm.getRoisAsArray()
 stackSize = imp.getStackSize()
-directory = directory.getPath()
 
 if show_mask:
 	stackOfMasks = ImageStack() # one mask-slice per image-slice
@@ -65,7 +82,7 @@ for sliceIndex in range(1, stackSize+1): # slice index ranges [1, stackSize] (he
 		filename = getImageName(imp) if stackSize==1 else getSliceName(imp, sliceIndex) 
 		filename = os.path.splitext(filename)[0] + suffix +".tiff" # use original filename followed by suffix + .tif
 		
-		filepath = os.path.join(directory, filename)
+		filepath = os.path.join(outDir, filename)
 		IJ.saveAsTiff(ImagePlus("mask", mask), filepath)
 	
 	
