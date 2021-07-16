@@ -9,10 +9,11 @@ For each image (or stack slice), a mask image is generated with regions outlined
 Overlapping ROIs will result in a single "white blob" in the mask. 
 
 The plugin should be executed after having annotated all ROIs in an image, or all image-slices of a stack.
+The script parameters define default values via value = , to avoid having null references when a field is empty
 """
 #@ Boolean (label="Show mask(s)", value=true) show_mask
 #@ Boolean (label="Save mask(s)", value=false) save_mask
-#@ File    (label="Save mask(s) in directory", style="directory") outDir
+#@ File    (label="Save mask(s) in directory", style="directory", value="") outDir
 #@ String  (label="Filename suffix (optional)", value="") suffix
 #@ String  (label="Save masks as", choices={"tif", "tiff", "png", "jpg", "gif", "bmp"}, value="tif") extension
 #@ ImagePlus imp
@@ -35,6 +36,12 @@ if rm.getCount() == 0:
 	raise Exception(msg)
 
 outDir = outDir.getPath()
+
+# Check that the directory field is not empty when saving
+if save_mask and len(outDir)==0:
+	msg = "Saving is selected but no directory was provided."
+	IJ.error(msg)
+	raise Exception(msg)
 
 # Check that we are not overwriting the original images
 # This might happen if the output directory == image directory and no suffix is used
