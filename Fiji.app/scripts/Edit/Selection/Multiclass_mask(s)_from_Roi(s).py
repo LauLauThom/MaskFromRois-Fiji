@@ -77,7 +77,7 @@ for sliceIndex in range(1, stackSize+1): # slice index ranges [1, stackSize] (he
 			# if stackSize = 1 ie single plane image, we just take all rois (which all have a position of 0 by the way)
 			continue # skip this ROI
 
-		ImageProcessor.setColor( mask, roi.getGroup()+1 ) #Python syntax to select the ImageProcessor function
+		ImageProcessor.setColor( mask, roi.getGroup()+1 ) # mask.setColor did not work with integer, always expecting a Color so use Class.method(instance, parameter) instead
 		mask.fill(roi)
 
 	if show_mask:
