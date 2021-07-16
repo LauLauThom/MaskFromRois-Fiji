@@ -90,11 +90,16 @@ for sliceIndex in range(1, stackSize+1): # slice index ranges [1, stackSize] (he
 		filepath = os.path.join(outDir, filename)
 		IJ.save(ImagePlus("mask", mask), filepath)
 	
-pathLut = os.path.join(IJ.getDirectory("imagej"),'luts','glasbey.lut') #load glasbey LUT to make low group numbers visible
-LUT     = LutLoader.openLut(pathLut)
+
 
 # Finally show the stack of mask if asked for
 if show_mask:
-	impMasks = ImagePlus("Masks", stackOfMasks)
+
+	impMasks = ImagePlus("Masks", stackOfMasks) 
+	
+	# Set glasbey LUT
+	pathLut = os.path.join(IJ.getDirectory("imagej"),'luts','glasbey.lut') #load glasbey LUT to make low group numbers visible
+	LUT    = LutLoader.openLut(pathLut)
 	impMasks.setLut(LUT)
+	
 	impMasks.show()
