@@ -22,6 +22,7 @@ from ij     import IJ, ImageStack, ImagePlus
 import os
 from FilenameGetter import getImageName, getSliceName
 from ij.process import ByteProcessor, ImageProcessor
+from ij.plugin	 import ImagesToStack, LutLoader 
 
 if imp.isHyperStack():
 	IJ.error("Hyperstack are not supported, use single-slider stack instead.\n" +
@@ -68,6 +69,10 @@ for sliceIndex in range(1, stackSize+1): # slice index ranges [1, stackSize] (he
 	# Group the rois of this slice into an Overlay
 	for roi in listRois:
 
+		if roi.getGroup() > 254:
+			IJ.error(" You set an Roi group number over 254. Only Roi group numbers under 254 are supported.")
+			raise Exception(" Invalid Roi group number for display in an 8 bit image due to 0 being taken by background")
+
 		if (stackSize>1) and (roi.getPosition() != sliceIndex):
 			# if stackSize = 1 ie single plane image, we just take all rois (which all have a position of 0 by the way)
 			continue # skip this ROI
@@ -85,8 +90,11 @@ for sliceIndex in range(1, stackSize+1): # slice index ranges [1, stackSize] (he
 		filepath = os.path.join(outDir, filename)
 		IJ.save(ImagePlus("mask", mask), filepath)
 	
-	
+pathLut = os.path.join(IJ.getDirectory("imagej"),'luts','glasbey.lut') #load glasbey LUT to make low group numbers visible
+LUT     = LutLoader.openLut(pathLut)
+
 # Finally show the stack of mask if asked for
 if show_mask:
 	impMasks = ImagePlus("Masks", stackOfMasks)
+	impMasks.setLut(LUT)
 	impMasks.show()
