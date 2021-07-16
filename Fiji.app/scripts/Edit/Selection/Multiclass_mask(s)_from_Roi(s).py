@@ -64,7 +64,7 @@ if show_mask:
 imp.deleteRoi() # remove any active ROI not in the ROI manager
 for sliceIndex in range(1, stackSize+1): # slice index ranges [1, stackSize] (hence +1 to have it included)
 
-	mask = ByteProcessor(ImagePlus.getWidth(imp),ImagePlus.getHeight(imp)) # create an empty image to paint over
+	mask = ByteProcessor(imp.getWidth(), imp.getHeight()) # create a black 8-bit image to use as mask to paint over 
 
 	# Group the rois of this slice into an Overlay
 	for roi in listRois:
