@@ -28,7 +28,7 @@ if imp.isHyperStack():
 	IJ.error("Hyperstack are not supported, use single-slider stack instead.\n" +
 			 "Or get in touch if you would really benefit from it.")
 	raise Exception("Active image is a hyperstack")
-	# Could support hyperstack in the future but complicated, need to convert from stlice index to hyperstack position and check roi CZT positions
+	# Could support hyperstack in the future but complicated, need to convert from slice index to hyperstack position and check roi CZT positions
 	# The ROI CZT Position can be 0 for a given dimension, meaning it's appearing on all slices of this dimension
 
 if rm.getCount() == 0:
@@ -98,7 +98,7 @@ if show_mask:
 	impMasks = ImagePlus("Masks", stackOfMasks) 
 	
 	# Set glasbey LUT
-	pathLut = os.path.join(IJ.getDirectory("imagej"),'luts','glasbey.lut') #load glasbey LUT to make low group numbers visible
+	pathLut = os.path.join(IJ.getDirectory("imagej"),'luts','glasbey_on_dark.lut')
 	LUT    = LutLoader.openLut(pathLut)
 	impMasks.setLut(LUT)
 	
