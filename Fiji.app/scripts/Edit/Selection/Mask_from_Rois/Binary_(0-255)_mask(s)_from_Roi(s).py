@@ -20,14 +20,14 @@ import os
 from FilenameGetter import getImageName, getSliceName
 
 gui = GenericDialog("Mask from Roi")
-gui.addCheckbox("Show mask(s)", True)
+gui.addCheckbox("Show_mask(s)", True)
 gui.addToSameRow()
-gui.addCheckbox("Save mask(s)", False)
-gui.addDirectoryField("Save mask(s) in directory", "")
-gui.addStringField("Filename suffix (optional)", "")
-gui.addChoice("Save masks as", ["tif", "tiff", "png", "jpg", "gif", "bmp"], "tif")
+gui.addCheckbox("Save_mask(s)", False)
+gui.addDirectoryField("Save_in directory", "")
+gui.addStringField("Suffix for filename (optional)", "")
+gui.addChoice("Save_mask_as", ["tif", "tiff", "png", "jpg", "gif", "bmp"], "tif")
 
-gui.addMessage("Hello World")
+gui.addMessage("") #Room to write a message for references
 
 gui.showDialog()
 
