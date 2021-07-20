@@ -10,19 +10,36 @@ Overlapping ROIs will result in a single "white blob" in the mask.
 
 The plugin should be executed after having annotated all ROIs in an image, or all image-slices of a stack.
 """
-#@ Boolean (label="Show mask(s)", value=true) show_mask
-#@ Boolean (label="Save mask(s)", value=false) save_mask
-#@ File    (label="Save mask(s) in directory", style="directory", value = "") outDir
-#@ String  (label="Filename suffix (optional)", value="") suffix
-#@ String  (label="Save masks as", choices={"tif", "tiff", "png", "jpg", "gif", "bmp"}, value="tif") extension
 #@ ImagePlus imp
 #@ RoiManager rm
-from ij.gui import Overlay
+from ij.gui import Overlay, GenericDialog
+from fiji.util.gui import GenericDialogPlus
 from ij     import IJ, ImageStack, ImagePlus
 import os
 from FilenameGetter import getImageName, getSliceName
 from ij.process import ByteProcessor, ImageProcessor
 from ij.plugin	 import ImagesToStack, LutLoader 
+
+gui = GenericDialog("Mask from Roi")
+gui.addCheckbox("Show_mask(s)", True)
+gui.addToSameRow()
+gui.addCheckbox("Save_mask(s)", False)
+gui.addDirectoryField("Save_in directory", "")
+gui.addStringField("Suffix for filename (optional)", "")
+gui.addChoice("Save_mask_as", ["tif", "tiff", "png", "jpg", "gif", "bmp"], "tif")
+
+gui.addMessage("") #Room to write a message for references
+
+gui.addHelp(r"https://imagej.github.io/plugins/masks-from-rois")
+
+gui.showDialog()
+
+if gui.wasOKed():
+	show_mask = gui.getNextBoolean()
+	save_mask = gui.getNextBoolean()
+	outDir = gui.getNextString()
+	suffix = gui.getNextString()
+	extension = gui.getNextChoice()
 
 if imp.isHyperStack():
 	IJ.error("Hyperstack are not supported, use single-slider stack instead.\n" +
@@ -35,9 +52,6 @@ if rm.getCount() == 0:
 	msg = "No ROIs in the RoiManager."
 	IJ.error(msg)
 	raise Exception(msg)
-
-if save_mask : # Prevents raising no outdir error when only show mask is selected
-	outDir = outDir.getPath()
 
 # Check that we are not overwriting the original images
 # This might happen if the output directory == image directory and no suffix is used
