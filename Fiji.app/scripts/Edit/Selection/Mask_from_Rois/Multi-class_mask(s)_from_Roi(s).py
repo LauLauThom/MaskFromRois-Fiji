@@ -28,6 +28,8 @@ gui.addDirectoryField("Save mask(s) in directory", "")
 gui.addStringField("Filename suffix (optional)", "")
 gui.addChoice("Save masks as", ["tif", "tiff", "png", "jpg", "gif", "bmp"], "tif")
 
+gui.addMessage("Hello World")
+
 gui.showDialog()
 
 if gui.wasOKed():
