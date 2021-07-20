@@ -49,9 +49,6 @@ if rm.getCount() == 0:
 	IJ.error(msg)
 	raise Exception(msg)
 
-if save_mask : # Prevents raising no outdir error when only show mask is selected
-	outDir = outDir.getPath()
-
 # Check that we are not overwriting the original images
 # This might happen if the output directory == image directory and no suffix is used
 # in practice overwriting the original images would require that they also have a tiff extension but we dont check it here 

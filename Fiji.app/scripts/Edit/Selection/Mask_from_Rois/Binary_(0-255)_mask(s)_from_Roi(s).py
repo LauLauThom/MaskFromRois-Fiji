@@ -48,8 +48,6 @@ if rm.getCount() == 0:
 	IJ.error(msg)
 	raise Exception(msg)
 
-outDir = outDir.getPath()
-
 # Check that the directory field is not empty when saving
 if save_mask and len(outDir)==0:
 	msg = "Saving is selected but no directory was provided."
