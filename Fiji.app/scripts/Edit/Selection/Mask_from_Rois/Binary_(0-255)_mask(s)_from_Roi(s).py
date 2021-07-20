@@ -29,6 +29,8 @@ gui.addChoice("Save_mask_as", ["tif", "tiff", "png", "jpg", "gif", "bmp"], "tif"
 
 gui.addMessage("") #Room to write a message for references
 
+gui.addHelp(r"https://imagej.github.io/plugins/masks-from-rois")
+
 gui.showDialog()
 
 if gui.wasOKed():
