@@ -12,21 +12,21 @@ The plugin should be executed after having annotated all ROIs in an image, or al
 """
 #@ ImagePlus imp
 #@ RoiManager rm
-from ij.gui import Overlay, GenericDialog
+#@ PrefService prefs
+
+from ij.gui import Overlay, GenericDialog
 from fiji.util.gui import GenericDialogPlus
 from ij     import IJ, ImageStack, ImagePlus
 import os
 from FilenameGetter import getImageName, getSliceName
-from ij.process import ByteProcessor, ImageProcessor
-from ij.plugin	 import ImagesToStack, LutLoader 
 
 gui = GenericDialog("Mask from Roi")
-gui.addCheckbox("Show_mask(s)", True)
+gui.addCheckbox("Show_mask(s)", prefs.getInt(None, "showMask", True))
 gui.addToSameRow()
-gui.addCheckbox("Save_mask(s)", False)
+gui.addCheckbox("Save_mask(s)", prefs.getInt(None, "saveMask", False))
 gui.addDirectoryField("Save_in directory", "")
-gui.addStringField("Suffix for filename (optional)", "")
-gui.addChoice("Save_mask_as", ["tif", "tiff", "png", "jpg", "gif", "bmp"], "tif")
+gui.addStringField("Suffix for filename (optional)", prefs.get(None, "suffixname", ""))
+gui.addChoice("Save_mask_as", ["tif", "tiff", "png", "jpg", "gif", "bmp"], prefs.get(None, "saveas", "tif"))
 
 gui.addMessage("") #Room to write a message for references
 
@@ -40,6 +40,11 @@ if gui.wasOKed():
 	outDir = gui.getNextString()
 	suffix = gui.getNextString()
 	extension = gui.getNextChoice()
+
+prefs.put(None, "showMask", show_mask)
+prefs.put(None, "saveMask", save_mask)
+prefs.put(None, "suffixname", suffix)
+prefs.put(None, "saveas", extension)
 
 if imp.isHyperStack():
 	IJ.error("Hyperstack are not supported, use single-slider stack instead.\n" +
