@@ -24,7 +24,7 @@ gui = GenericDialog("Mask from Roi")
 gui.addCheckbox("Show_mask(s)", prefs.getInt(None, "showMask", True))
 gui.addToSameRow()
 gui.addCheckbox("Save_mask(s)", prefs.getInt(None, "saveMask", False))
-gui.addDirectoryField("Save_in directory", "")
+gui.addDirectoryField("Save_in directory", prefs.get(None, "directory", ""))
 gui.addStringField("Suffix for filename (optional)", prefs.get(None, "suffixname", ""))
 gui.addChoice("Save_mask_as", ["tif", "tiff", "png", "jpg", "gif", "bmp"], prefs.get(None, "saveas", "tif"))
 
@@ -43,6 +43,7 @@ if gui.wasOKed():
 
 prefs.put(None, "showMask", show_mask)
 prefs.put(None, "saveMask", save_mask)
+prefs.put(None, "directory", outDir)
 prefs.put(None, "suffixname", suffix)
 prefs.put(None, "saveas", extension)
 
