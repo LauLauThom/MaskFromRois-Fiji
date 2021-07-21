@@ -1,32 +1,32 @@
 """
-This plugin facilitates the generation of mask images (0/255) from image-regions outlined with ROIs for large datasets.
+This plugin facilitates the generation of mask images (semantic) from image-regions outlined with grouped ROIs for large datasets.
 Annotated images can be single plane images or stacks with a single dimensions slider.
 HYPERSTACKS ARE CURRENTLY NOT SUPPORTED.
-This plugin should be called after annotating image-regions with ROIs, stored in the RoiManager.
+This plugin should be called after annotating image-regions with ROIs of different groups, stored in the RoiManager.
 Single images or multiple images in a stack (or Virtual stack) can be annotated. In the latter case, the Z-Position of the Rois is used to associate them to the corresponding image.
 
-For each image (or stack slice), a mask image is generated with regions outlined by rois represented by white-pixels (value=255), while the background area is black (value=0).
-Overlapping ROIs will result in a single "white blob" in the mask. 
+For each image (or stack slice), a mask image is generated with regions outlined by rois represented by colored pixels (value>=1), while the background area is black (value=0).
+Overlapping ROIs will result in the ROI with the highest group number overlapping the other in the mask. 
 
 The plugin should be executed after having annotated all ROIs in an image, or all image-slices of a stack.
 """
 #@ ImagePlus imp
 #@ RoiManager rm
-from ij.gui import Overlay, GenericDialog
+#@ PrefService prefs
+
+from ij.gui import Overlay, GenericDialog
 from fiji.util.gui import GenericDialogPlus
 from ij     import IJ, ImageStack, ImagePlus
 import os
 from FilenameGetter import getImageName, getSliceName
-from ij.process import ByteProcessor, ImageProcessor
-from ij.plugin	 import ImagesToStack, LutLoader 
 
 gui = GenericDialog("Mask from Roi")
-gui.addCheckbox("Show_mask(s)", True)
+gui.addCheckbox("Show_mask(s)", prefs.getInt(None, "showMask", True))
 gui.addToSameRow()
-gui.addCheckbox("Save_mask(s)", False)
-gui.addDirectoryField("Save_in directory", "")
-gui.addStringField("Suffix for filename (optional)", "")
-gui.addChoice("Save_mask_as", ["tif", "tiff", "png", "jpg", "gif", "bmp"], "tif")
+gui.addCheckbox("Save_mask(s)", prefs.getInt(None, "saveMask", False))
+gui.addDirectoryField("Save_in directory", prefs.get(None, "directory", ""))
+gui.addStringField("Suffix for filename (optional)", prefs.get(None, "suffixname", ""))
+gui.addChoice("Save_mask_as", ["tif", "tiff", "png", "jpg", "gif", "bmp"], prefs.get(None, "saveas", "tif"))
 
 gui.addMessage("") #Room to write a message for references
 
@@ -40,6 +40,12 @@ if gui.wasOKed():
 	outDir = gui.getNextString()
 	suffix = gui.getNextString()
 	extension = gui.getNextChoice()
+
+prefs.put(None, "showMask", show_mask)
+prefs.put(None, "saveMask", save_mask)
+prefs.put(None, "directory", outDir)
+prefs.put(None, "suffixname", suffix)
+prefs.put(None, "saveas", extension)
 
 if imp.isHyperStack():
 	IJ.error("Hyperstack are not supported, use single-slider stack instead.\n" +
