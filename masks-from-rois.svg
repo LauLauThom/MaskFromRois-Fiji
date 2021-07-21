@@ -8,7 +8,7 @@
    version="1.1"
    id="svg5"
    inkscape:version="1.1 (c68e22c387, 2021-05-23)"
-   sodipodi:docname="Logo_MfR.svg"
+   sodipodi:docname="masks-from-rois.svg"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns="http://www.w3.org/2000/svg"
@@ -24,8 +24,8 @@
      inkscape:document-units="mm"
      showgrid="false"
      inkscape:zoom="1.5554293"
-     inkscape:cx="243.98409"
-     inkscape:cy="321.77612"
+     inkscape:cx="52.39711"
+     inkscape:cy="225.33972"
      inkscape:window-width="2560"
      inkscape:window-height="1377"
      inkscape:window-x="-8"
@@ -33,7 +33,28 @@
      inkscape:window-maximized="1"
      inkscape:current-layer="layer1" />
   <defs
-     id="defs2" />
+     id="defs2">
+    <marker
+       style="overflow:visible"
+       id="TriangleOutS"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="TriangleOutS"
+       inkscape:isstock="true">
+      <path
+         transform="scale(0.2)"
+         style="fill-rule:evenodd;fill:context-stroke;stroke:context-stroke;stroke-width:1.0pt"
+         d="M 5.77,0.0 L -2.88,5.0 L -2.88,-5.0 L 5.77,0.0 z "
+         id="path16247" />
+    </marker>
+    <rect
+       x="16.715642"
+       y="21.858917"
+       width="178.72879"
+       height="41.789106"
+       id="rect2085" />
+  </defs>
   <g
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
@@ -138,5 +159,49 @@
        height="35.47438"
        x="84.837532"
        y="148.48474" />
+    <text
+       xml:space="preserve"
+       transform="matrix(0.26458333,0,0,0.26458333,22.453608,61.067017)"
+       id="text2083"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect2085);fill:#000000;fill-opacity:1;stroke:none"><tspan
+         x="16.714844"
+         y="100.14165"
+         id="tspan26803"><tspan
+           dx="0 16.835938 38.90625"
+           id="tspan26801">Ima</tspan></tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:10.5833px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+       x="27.386599"
+       y="73.484543"
+       id="text20947"><tspan
+         sodipodi:role="line"
+         id="tspan20945"
+         style="stroke-width:0.264583"
+         x="27.386599"
+         y="73.484543">Image</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:10.5833px;line-height:1.25;font-family:sans-serif;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.264583"
+       x="75.268883"
+       y="113.15126"
+       id="text20947-8"><tspan
+         sodipodi:role="line"
+         id="tspan20945-2"
+         style="fill:#ffffff;stroke-width:0.264583"
+         x="75.268883"
+         y="113.15126">Mask</tspan></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:2.87968;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#TriangleOutS)"
+       d="m 132.4349,68.174279 c 29.66584,0.177658 30.04618,27.181697 30.04618,27.181697"
+       id="path26130" />
+    <rect
+       style="fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:0.560168;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;paint-order:markers fill stroke"
+       id="rect26263"
+       width="53.82457"
+       height="25.424767"
+       x="24.753777"
+       y="76.627815"
+       ry="6.2777262" />
   </g>
 </svg>
