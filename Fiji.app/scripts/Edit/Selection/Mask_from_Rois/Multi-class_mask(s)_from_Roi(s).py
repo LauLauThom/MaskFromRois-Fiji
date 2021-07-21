@@ -17,6 +17,8 @@ The plugin should be executed after having annotated all ROIs in an image, or al
 from ij.gui import Overlay, GenericDialog
 from fiji.util.gui import GenericDialogPlus
 from ij     import IJ, ImageStack, ImagePlus
+from ij.process import ByteProcessor, ImageProcessor
+from ij.plugin import LutLoader
 import os
 from FilenameGetter import getImageName, getSliceName
 
