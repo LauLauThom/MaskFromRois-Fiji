@@ -9,7 +9,6 @@ For each image (or stack slice), a mask image is generated with regions outlined
 Overlapping ROIs will result in a single "white blob" in the mask. 
 
 The plugin should be executed after having annotated all ROIs in an image, or all image-slices of a stack.
-The script parameters define default values via value = , to avoid having null references when a field is empty
 """
 #@ ImagePlus imp
 #@ RoiManager rm
