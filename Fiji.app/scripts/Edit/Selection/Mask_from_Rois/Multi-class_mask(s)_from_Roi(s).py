@@ -22,7 +22,7 @@ from ij.plugin import LutLoader
 import os
 from FilenameGetter import getImageName, getSliceName
 
-gui = GenericDialog("Mask from Roi")
+gui = GenericDialog("Multi-class Mask(s) from Roi(s)")
 gui.addCheckbox("Show_mask(s)", prefs.getInt(None, "showMask", True))
 gui.addToSameRow()
 gui.addCheckbox("Save_mask(s)", prefs.getInt(None, "saveMask", False))

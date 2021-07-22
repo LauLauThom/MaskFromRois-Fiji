@@ -1,5 +1,5 @@
 """
-This plugin facilitates the generation of mask images (0/255) from image-regions outlined with ROIs for large datasets.
+This plugin facilitates the generation of mask images (binary 0/255) from image-regions outlined with ROIs for large datasets.
 Annotated images can be single plane images or stacks with a single dimensions slider.
 HYPERSTACKS ARE CURRENTLY NOT SUPPORTED.
 This plugin should be called after annotating image-regions with ROIs, stored in the RoiManager.
@@ -20,7 +20,7 @@ from ij     import IJ, ImageStack, ImagePlus
 import os
 from FilenameGetter import getImageName, getSliceName
 
-gui = GenericDialog("Mask from Roi")
+gui = GenericDialog("Binary Mask(s) from Roi(s)")
 gui.addCheckbox("Show_mask(s)", prefs.getInt(None, "showMask", True))
 gui.addToSameRow()
 gui.addCheckbox("Save_mask(s)", prefs.getInt(None, "saveMask", False))
