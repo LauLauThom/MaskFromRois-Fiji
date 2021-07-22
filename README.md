@@ -20,9 +20,14 @@ There are 2 plugins for the generation of:
 The resulting mask is black (pixel value 0) while regions outlined by rois are turned to white pixels (pixel value 255).  
 Overlapping ROIs will thus be merged into a single "white blob" in the mask.  
 
+<img src="https://github.com/LauLauThom/MaskFromRois-Fiji/blob/main/images/DotBlot-montage.PNG" alt="DotBlot" width=80% height=80%>
+
 - Multi-class/semantic mask  
 This plugin takes advantage of the [group attribute of ROIs](https://f1000research.com/slides/9-183) to annotate regions belonging to the same "object-class", tissue...   
 There ROIs are turned to a region with pixel values value corresponding to the ROI group. The result is a "semantic mask", where object/tissues of the same group have the same pixel value.  
+
+<img src="https://github.com/LauLauThom/MaskFromRois-Fiji/blob/main/images/Montage-multiClass.png" alt="MultiClassMask" width=80% height=80%>
+
 
 Overlapping ROIs with identical group attributes will be merged into a single blob of identical pixel value.  
 __Overlapping ROIs with different group attributes__ will however be assigned the pixel value of the last "painted" ROIs, ie the most bottom one in the RoiManager. 
