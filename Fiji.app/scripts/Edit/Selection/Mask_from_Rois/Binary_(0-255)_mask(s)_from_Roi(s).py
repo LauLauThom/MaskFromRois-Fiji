@@ -28,7 +28,12 @@ gui.addDirectoryField("Save_in directory", prefs.get(None, "directory", ""))
 gui.addStringField("Suffix for filename (optional)", prefs.get(None, "suffixname", ""))
 gui.addChoice("Save_mask_as", ["tif", "tiff", "png", "jpg", "gif", "bmp"], prefs.get(None, "saveas", "tif"))
 
-gui.addMessage("") #Room to write a message for references
+gui.addMessage("""If you use this plugin please cite:
+  
+Laurent Thomas, & Pierre Trehin. (2021, July 22)
+github : LauLauThom/MaskFromRois-Fiji
+Masks from ROIs plugins for Fiji - initial release (Version 1.0.0)
+Zenodo. http://doi.org/10.5281/zenodo.5121890""")
 
 gui.addHelp(r"https://imagej.github.io/plugins/masks-from-rois")
 
