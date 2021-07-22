@@ -1,4 +1,7 @@
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.5121890.svg)](https://doi.org/10.5281/zenodo.5121890)
+
 # Generate Masks from Rois in Fiji
+
 <img src="https://github.com/LauLauThom/MaskFromRois-Fiji/blob/main/GUI.png" width=50% height=50%>
 
 ## Installation
@@ -44,3 +47,10 @@ __Example__:
 _original.tiff_  
 with suffix *-mask* and `png` extension, the mask will be    
 _original-mask.png_
+
+## Citation
+Please cite the upload/DOI on Zenodo
+
+Laurent Thomas, & Pierre Trehin. (2021, July 22)  
+LauLauThom/MaskFromRois-Fiji: Masks from ROIs plugins for Fiji - initial release (Version 1.0.0)  
+Zenodo. http://doi.org/10.5281/zenodo.5121890 
