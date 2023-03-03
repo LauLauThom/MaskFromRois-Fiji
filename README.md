@@ -6,6 +6,7 @@
 
 ## Installation
 Activate the *Masks from Rois* update site (see [Activating an update site](https://imagej.net/update-sites/following)).  
+Make sure you have at least ImageJ 1.53d see (*Help > About ImageJ...*), and to update *Help > Update ImageJ...*
 
 Alternatively, without the Fiji updater, you can download the content of the repository, clicking the green button `code`, and choosing `Download ZIP`.  
 Unzip the file, drag and drop the Fiji.app directory in the directory containing your Fiji installation (ie in the directory containing your own Fiji.app).  
