@@ -30,13 +30,13 @@ def getSliceName(imagePlus, sliceIndex):
 	If inexistent, a slice name is made up as "C:c, Z:z, T:t" for hyperstacks or "Slice x" for single slider stacks
 	"""
 	stack = imagePlus.getStack() 
-	
+		
 	if (sliceIndex<1) or (sliceIndex>stack.getSize()):
 		raise ValueError("Slice index for stacks must be between 1 and stack-size.")
-
+	
 	# Slice name
 	sliceName = stack.getSliceLabel(sliceIndex) 
-
+	
 	if sliceName is not None: 
 		sliceName = sliceName.split('\n',1)[0] # can be useful when ImagesToStack/Import Sequence was used
 	
@@ -60,6 +60,6 @@ if __name__ in ['__builtin__', '__main__']:
 	imp = IJ.getImage()
 	print "Image name", getImageName(imp)
 	#print imp.getStack().getSliceLabel(1)
-
+	
 	index = 2 
 	print "Slice name", getSliceName(imp, index)
